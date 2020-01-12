@@ -1,1 +1,14 @@
-<p>search works!</p>
+<div class="row">
+    <div class="col">
+            <input #termino type="text" class="form-control" placeholder="Buscar..." (click)="buscar(termino.value)">
+    </div>
+</div>
+<div  class="card-group" >
+        <div *ngFor="let artista of artistas, let i=index" [routerLink]="['/artista/', artista.id]" class="card" style="width: 200px !important;">
+          <img [src]="artista.images[0].url" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{artista.name}}</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>

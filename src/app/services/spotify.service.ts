@@ -8,23 +8,39 @@ export class SpotifyService {
 
   constructor(private http:HttpClient) {
     console.log("Servicio correctamente insertado");
-  }
+    this.getNewReleases();
+    }
 
- 
+  data : any[] =[];
 
+  token :string = "QBNBJGH8bddT5rO0g5cNSIeX1jNgrSLLOOM-MADdEg-WsoT7QoNvJ1BHqlWWdQ7r0D4jVpsN6psFyyLw9A";
+  
   getNewReleases(){
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer BQD2G7ye8mLBll9pod-s2Sl0Uh066Vq-nDg6v1nf3E0GLgRtIBHG01wSC_QSTHOBgyvFQj0zWtYWv21cyLA',
+      'Authorization': 'Bearer ' + this.token
     });
 
-    this.http.get('https://api.spotify.com/v1/browse/new-releases', {headers})
-    .subscribe((data : any[])=>{
-        console.log(data);
-    });
-
-
-    console.log(this.getNewReleases());
-    
+    return this.http.get('https://api.spotify.com/v1/browse/new-releases', {headers})
+    ;
   }
+
+  getArtista(termino:string){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token,
+    });
+
+    return this.http.get(`https://api.spotify.com/v1/search?q=${termino}&type=artist&limit=15` , {headers})
+  }
+
+  getDetailArtista(id:string){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token,
+    });
+
+    return this.http.get(`	https://api.spotify.com/v1/artists/${id}` , {headers})
+  }
+
+
+
 }

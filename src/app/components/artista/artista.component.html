@@ -1,1 +1,12 @@
-<p>artista works!</p>
+<app-loading *ngIf="loadingArtist"></app-loading>
+
+
+<div class="jumbotron jumbotron-fluid">
+        <div class="container d-flex">
+            <img [src]="artista.images[0].url" class="img-thumbnail img-circle" style="max-height: 200px;">
+            <div class="p-5">
+          <h1 class="display-4">{{artista.name}}</h1>
+          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+          </div>
+        </div>
+      </div>
